@@ -9,6 +9,8 @@ singularity exec --bind /data1 /data1/labTools/labTools.sif python sendData.py -
 version: v2.0.0
 usage: sendData.py [-h] [--listfile LISTFILE] [--sampleID SAMPLEID] [--batch BATCH] [--workdir WORKDIR] [--version]
 
+Data Creation Tool for iTMS Sending.
+
 optional arguments:
   -h, --help            show this help message and exit
   --listfile LISTFILE, -f LISTFILE
