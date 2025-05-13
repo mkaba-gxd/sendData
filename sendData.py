@@ -14,7 +14,7 @@ def argParser():
     if '--help' in sys.argv or '-h' in sys.argv:
         print(f"version: {VERSION}")
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description="Data Creation Tool for iTMS Sending.")
     parser.add_argument("--listfile","-f", required=False, help="List of samples to be transferred.", default=None)
     parser.add_argument("--sampleID","-s", required=False, help="sample ID", default=None)
     parser.add_argument("--batch","-b", required=False, help="batch folder name", default=None)
