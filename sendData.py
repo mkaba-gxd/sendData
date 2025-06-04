@@ -56,8 +56,8 @@ def init(msg, parser=None) :
         parser.print_help()
     sys.exit(1)
 
-BASH1 = Path(__file__).parent.parent / 'template' / 'copy_data.sh'
-BASH2 = Path(__file__).parent.parent / 'template' / 'merge_data.sh'
+BASH1 = Path(__file__).parent / 'template' / 'copy_data.sh'
+BASH2 = Path(__file__).parent / 'template' / 'merge_data.sh'
 
 if not os.path.isfile(BASH1) :
     init("copy_data.sh file missing.")
