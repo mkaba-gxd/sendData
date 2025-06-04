@@ -34,3 +34,6 @@ optional arguments:
 &ensp;&ensp;&ensp;\<workdir>/<time‐stamp>/checksum.txt に各ファイルのチェックサムを書き出すジョブが投入される。\
 ⇒ 全てのジョブ完了を確認後、/media/usb に送付用HDDがマウントされていることを確認し、\
 &ensp;&ensp;&ensp;rsync -avLzu コマンドで解析データの転送と、\<workdir>/<time‐stamp>/checksum.txt を /media/usb/checksum.txt に追記する。
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/c9ea0932-06ca-4dec-9d63-ff7066f49744" width="600">
+</p>
