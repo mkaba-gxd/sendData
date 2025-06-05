@@ -1,5 +1,11 @@
 # sendData
 指定された検体について、解析フォルダからiTMSへ送付するデータのシンボリックリンクとチェックサムを作成する。
+## バックアップデータ
+### **eWES**
+<img src="https://github.com/user-attachments/assets/89825ab3-bb84-4ddb-a4a7-669743ae3881" width="1000">
+
+### **WTS**
+<img src="https://github.com/user-attachments/assets/3fdde1cf-4436-4f6e-aca4-f5c8cdf43446" width="1000">
 
 ## 実行方法
 実行に必要なPythonモジュールがセットされているコンテナ /data1/labTools/labTools.sif を使用する。\
@@ -34,6 +40,3 @@ optional arguments:
 &ensp;&ensp;&ensp;\<workdir>/<time‐stamp>/checksum.txt に各ファイルのチェックサムを書き出すジョブが投入される。\
 ⇒ 全てのジョブ完了を確認後、/media/usb に送付用HDDがマウントされていることを確認し、\
 &ensp;&ensp;&ensp;rsync -avLzu コマンドで解析データの転送と、\<workdir>/<time‐stamp>/checksum.txt を /media/usb/checksum.txt に追記する。
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/c9ea0932-06ca-4dec-9d63-ff7066f49744" width="600">
-</p>
