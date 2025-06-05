@@ -19,7 +19,7 @@ def argParser():
     parser.add_argument("--sampleID","-s", required=False, help="sample ID", default=None)
     parser.add_argument("--batch","-b", required=False, help="batch folder name", default=None)
     parser.add_argument("--directory","-d", required=False, help="parent analytical directory", default="/data1/data/result")
-    parser.add_argument("--forwarding","-fw", required=False, help="working directory", default="/data1/work/send_to_ITMS")
+    parser.add_argument("--transfer","-t", required=False, help="working directory", default="/data1/work/send_to_ITMS")
     parser.add_argument('--version','-v', action='version', version=f'%(prog)s {VERSION}')
 
     return parser
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     sample_id = args.sampleID
     batch_id = args.batch
     directory = Path(args.directory)
-    forwarding = Path(args.forwarding)
+    transfer = Path(args.transfer)
 
     df = pd.DataFrame(dict(batch_id=[], sample_id=[]))
 
@@ -113,15 +113,15 @@ if __name__ == "__main__":
         except NameError:
             out_tbl = tmp_tbl
 
-    os.makedirs(forwarding, exist_ok=True)
+    os.makedirs(transfer, exist_ok=True)
     out_tbl = out_tbl.sort_values('PATIENT_NO')
     try:
-        out_tbl.to_csv(forwarding / f"{now_str}.idx", sep='\t', index=False, header=False)
+        out_tbl.to_csv(transfer / f"{now_str}.idx", sep='\t', index=False, header=False)
     except NameError:
         pass
 
     NUM = str(out_tbl.shape[0])
-    TMPDIR = forwarding / f"{now_str}"
+    TMPDIR = transfer / f"{now_str}"
     os.makedirs(TMPDIR, exist_ok=True)
 
     qsubCmd = f"/data1/apps/sge/bin/lx-amd64/qsub -t 1-{NUM} -N SD.{now_str} -q all.q -pe smp 2 -o /dev/null -e /dev/null {BASH1} {directory} {TMPDIR} {SCRIPT}"
@@ -130,8 +130,8 @@ if __name__ == "__main__":
     os.system(qsubCmd)
 
     print("After confirming the completion of all jobs, transfer the created data with the following command.")
-    print(f"rsync -avLzu {forwarding}/{now_str}/GxD /media/usb/")
-    print(f"cat {forwarding}/{now_str}/checksum.txt >> /media/usb/checksum.txt")
+    print(f"rsync -avLzu {transfer}/{now_str}/GxD /media/usb/")
+    print(f"cat {transfer}/{now_str}/checksum.txt >> /media/usb/checksum.txt")
 
 
 
