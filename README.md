@@ -2,10 +2,10 @@
 指定された検体について、解析フォルダからiTMSへ送付するデータのシンボリックリンクとチェックサムを作成する。
 ## 送付データ
 ### **eWES**
-<img src="https://github.com/user-attachments/assets/89825ab3-bb84-4ddb-a4a7-669743ae3881" width="1000">
+<img src="https://github.com/user-attachments/assets/cd1eb924-470a-4087-b647-d831edc29c51" width="1000">
 
 ### **WTS**
-<img src="https://github.com/user-attachments/assets/3fdde1cf-4436-4f6e-aca4-f5c8cdf43446" width="1000">
+<img src="https://github.com/user-attachments/assets/67533440-aa2c-4a35-8c6f-3020910bd0f6" width="1000">
 
 ## 実行方法
 実行に必要なPythonモジュールがセットされているコンテナ /data1/labTools/labTools.sif を使用する。\
