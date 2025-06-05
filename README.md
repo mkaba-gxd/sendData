@@ -40,7 +40,7 @@ optional arguments:
 |--directory/-d |解析フォルダの親ディレクトリ                     |/data1/data/result |
 |--transfer/-t  |転送用のデータセット出力先                 |/data1/work/send_to_ITMS |
 
-⇒ \<TRANSFER>/<timestamp>/GxD に既定のディレクトリ構造でシンボリックリンクを作成する。\
-&ensp;&ensp;&ensp;\<TRANSFER>/<timestamp>/checksum.txt に各ファイルのチェックサムを書き出すジョブが投入される。\
+⇒ \<TRANSFER\>/\<timestamp\>/GxD に既定のディレクトリ構造でシンボリックリンクを作成する。\
+&ensp;&ensp;&ensp;\<TRANSFER\>/\<timestamp\>/checksum.txt に各ファイルのチェックサムを書き出すジョブが投入される。\
 ⇒ 全てのジョブ完了を確認後、/media/usb に送付用HDDがマウントされていることを確認し、\
-&ensp;&ensp;&ensp;rsync -avLzu コマンドで解析データの転送と、\<TRANSFER>/<timestamp>/checksum.txt を /media/usb/checksum.txt に追記する。
+&ensp;&ensp;&ensp;rsync -avLzu コマンドで解析データの転送と、\<TRANSFER\>/\<timestamp\>/checksum.txt を /media/usb/checksum.txt に追記する。
