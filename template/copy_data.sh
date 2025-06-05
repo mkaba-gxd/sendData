@@ -6,13 +6,13 @@
 #$ -e Logs/
 #$ -l qname=all.q
 
-if [ $# -ne 1 ]; then exit 1; fi
-TMPDIR=$1
+if [ $# -ne 3 ]; then exit 1; fi
+WORKDIR=$1
+TMPDIR=$2
+script=$3
 task_id=$SGE_TASK_ID
 eFile=$TMPDIR/error.log
 
-WORKDIR=/data1/data/result
-script=/data1/labTools/sendData/modules/extract.py
 cont=/data1/labTools/labTools.sif
 
 if [ ! -s $cont ] || [ ! -s $script ]; then

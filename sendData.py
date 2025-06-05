@@ -18,7 +18,8 @@ def argParser():
     parser.add_argument("--listfile","-f", required=False, help="List of samples to be transferred.", default=None)
     parser.add_argument("--sampleID","-s", required=False, help="sample ID", default=None)
     parser.add_argument("--batch","-b", required=False, help="batch folder name", default=None)
-    parser.add_argument("--workdir","-wd", required=False, help="working directory", default="/data1/work/send_to_ITMS")
+    parser.add_argument("--directory","-d", required=False, help="parent analytical directory", default="/data1/data/result")
+    parser.add_argument("--forwarding","-fw", required=False, help="working directory", default="/data1/work/send_to_ITMS")
     parser.add_argument('--version','-v', action='version', version=f'%(prog)s {VERSION}')
 
     return parser
@@ -58,11 +59,14 @@ def init(msg, parser=None) :
 
 BASH1 = Path(__file__).parent / 'template' / 'copy_data.sh'
 BASH2 = Path(__file__).parent / 'template' / 'merge_data.sh'
+SCRIPT = Path(__file__).parent / 'modules' / 'extract.py'
 
 if not os.path.isfile(BASH1) :
     init("copy_data.sh file missing.")
 if not os.path.isfile(BASH2) :
     init("merge_data.sh file missing.")
+if not os.path.isfile(SCRIPT) :
+    init("extract.py file missing.")
 
 if __name__ == "__main__":
 
@@ -74,7 +78,8 @@ if __name__ == "__main__":
     listfile = args.listfile
     sample_id = args.sampleID
     batch_id = args.batch
-    workdir = Path(args.workdir)
+    directory = Path(args.directory)
+    forwarding = Path(args.forwarding)
 
     df = pd.DataFrame(dict(batch_id=[], sample_id=[]))
 
@@ -108,25 +113,25 @@ if __name__ == "__main__":
         except NameError:
             out_tbl = tmp_tbl
 
-    os.makedirs(workdir, exist_ok=True)
+    os.makedirs(forwarding, exist_ok=True)
     out_tbl = out_tbl.sort_values('PATIENT_NO')
     try:
-        out_tbl.to_csv(Path(workdir) / f"{now_str}.idx", sep='\t', index=False, header=False)
+        out_tbl.to_csv(forwarding / f"{now_str}.idx", sep='\t', index=False, header=False)
     except NameError:
         pass
 
     NUM = str(out_tbl.shape[0])
-    TMPDIR = workdir / f"{now_str}"
+    TMPDIR = forwarding / f"{now_str}"
     os.makedirs(TMPDIR, exist_ok=True)
 
-    qsubCmd = f"/data1/apps/sge/bin/lx-amd64/qsub -t 1-{NUM} -N SD.{now_str} -q all.q -pe smp 2 -o /dev/null -e /dev/null {BASH1} {TMPDIR}"
+    qsubCmd = f"/data1/apps/sge/bin/lx-amd64/qsub -t 1-{NUM} -N SD.{now_str} -q all.q -pe smp 2 -o /dev/null -e /dev/null {BASH1} {directory} {TMPDIR} {SCRIPT}"
     os.system(qsubCmd)
     qsubCmd = f"/data1/apps/sge/bin/lx-amd64/qsub -hold_jid SD.{now_str} -N MG.{now_str} -q all.q -pe smp 2 -o /dev/null -e /dev/null {BASH2} {TMPDIR}"
     os.system(qsubCmd)
 
     print("After confirming the completion of all jobs, transfer the created data with the following command.")
-    print(f"rsync -avLzu {workdir}/{now_str}/GxD /media/usb/")
-    print(f"cat {workdir}/{now_str}/checksum.txt >> /media/usb/checksum.txt")
+    print(f"rsync -avLzu {forwarding}/{now_str}/GxD /media/usb/")
+    print(f"cat {forwarding}/{now_str}/checksum.txt >> /media/usb/checksum.txt")
 
 
 
