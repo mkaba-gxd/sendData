@@ -1,6 +1,6 @@
 # sendData
 指定された検体について、解析フォルダからiTMSへ送付するデータのシンボリックリンクとチェックサムを作成する。
-## バックアップデータ
+## 送付データ
 ### **eWES**
 <img src="https://github.com/user-attachments/assets/89825ab3-bb84-4ddb-a4a7-669743ae3881" width="1000">
 
