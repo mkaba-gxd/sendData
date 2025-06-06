@@ -32,15 +32,16 @@ optional arguments:
                         working directory
   --version, -v         show program's version number and exit
 ```
-| option        | 概要                                            |default            |
-|:--------------|:------------------------------------------------|:------------------|
-|--listfile/-f  |転送する検体のリストファイル。 batchフォルダ名とSample IDをタブ区切りで記載 |None |
-|--sampleID/-s  |転送する検体のSample ID（タブ区切りで複数指定可）|None               |
-|--batch/-b     |転送する検体のbatchフォルダ名（複数指定不可）    |None               |
-|--directory/-d |解析フォルダの親ディレクトリ                     |/data1/data/result |
-|--transfer/-t  |転送用のデータセット出力先                 |/data1/work/send_to_ITMS |
+| option        |required | 概要                                            |default            |
+|:--------------|:-------:|:------------------------------------------------|:------------------|
+|--listfile/-f  |False*   |転送する検体のリストファイル。 batchフォルダ名とSample IDをタブ区切りで記載 |None |
+|--sampleID/-s  |False*   |転送する検体のSample ID（タブ区切りで複数指定可）|None               |
+|--batch/-b     |False*   |転送する検体のbatchフォルダ名（複数指定不可）    |None               |
+|--directory/-d |False    |解析フォルダの親ディレクトリ                     |/data1/data/result |
+|--transfer/-t  |False    |転送用のデータセット出力先                 |/data1/work/send_to_ITMS |
 
-⇒ \<TRANSFER\>/\<timestamp\>/GxD に既定のディレクトリ構造でシンボリックリンクを作成する。\
+**\*--listfile または --sampleID と--batch を指定する** \
+⇒ \<TRANSFER\>/\<timestamp\>/GxD に既定のディレクトリ構造でシンボリックリンクが作成される。\
 &ensp;&ensp;&ensp;\<TRANSFER\>/\<timestamp\>/checksum.txt に各ファイルのチェックサムを書き出すジョブが投入される。\
-⇒ 全てのジョブ完了を確認後、/media/usb に送付用HDDがマウントされていることを確認し、\
-&ensp;&ensp;&ensp;rsync -avLzu コマンドで解析データの転送と、\<TRANSFER\>/\<timestamp\>/checksum.txt を /media/usb/checksum.txt に追記する。
+⇒ 投入された全てのジョブ完了を確認後、/media/usb に送付用HDDがマウントされていることを確認し、\
+&ensp;&ensp;&ensp;rsync -avLzu コマンドで解析データの転送と、\<TRANSFER\>/\<timestamp\>/checksum.txt の /media/usb/checksum.txt への追記を実施する。
