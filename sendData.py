@@ -16,7 +16,7 @@ def argParser():
 
     parser = argparse.ArgumentParser(description="Data Creation Tool for iTMS Sending.")
     parser.add_argument("--listfile","-f", required=False, help="List of samples to be transferred.", default=None)
-    parser.add_argument("--sampleID","-s", required=False, help="sample ID", default=None)
+    parser.add_argument("--sample","-s", required=False, help="sample ID", default=None)
     parser.add_argument("--batch","-b", required=False, help="batch folder name", default=None)
     parser.add_argument("--directory","-d", required=False, help="parent analytical directory", default="/data1/data/result")
     parser.add_argument("--transfer","-t", required=False, help="working directory", default="/data1/work/send_to_ITMS")
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     parser  = argParser()
     args = parser.parse_args()
     listfile = args.listfile
-    sample_id = args.sampleID
+    sample_id = args.sample
     batch_id = args.batch
     directory = Path(args.directory)
     transfer = Path(args.transfer)
