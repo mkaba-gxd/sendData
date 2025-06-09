@@ -130,8 +130,8 @@ if __name__ == "__main__":
     os.system(qsubCmd)
 
     print("After confirming the completion of all jobs, transfer the created data with the following command.")
-    print(f"rsync -avLzu {transfer}/{now_str}/GxD /media/usb/")
-    print(f"cat {transfer}/{now_str}/checksum.txt >> /media/usb/checksum.txt")
+    print(f"rsync -avLzu {transfer}/{now_str}/GxD /media/usb/cap/")
+    print(f"cat {transfer}/{now_str}/checksum.txt >> /media/usb/cap/checksum.txt")
 
 
 
