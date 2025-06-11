@@ -5,8 +5,8 @@
 <img src="https://github.com/user-attachments/assets/cd1eb924-470a-4087-b647-d831edc29c51" width="1000">
 
 ### **WTS**
-<img src="https://github.com/user-attachments/assets/67533440-aa2c-4a35-8c6f-3020910bd0f6" width="1000">
-
+<img src="https://github.com/user-attachments/assets/67533440-aa2c-4a35-8c6f-3020910bd0f6" width="1000"> \
+*転送するデータが1つでも足りない場合、当該検体のリンク作成とチェックサムの作成は行わない
 ## エイリアスの作成（初回のみ）
 ~/bin フォルダを作成し、以下のコマンドを記載したテキストファイル send_to_itms を作成し、実行権限を付与する。
 エイリアスを作成しない場合は、singularity でコンテナを指定して実行する。
@@ -17,20 +17,20 @@ usage を表示してエイリアスの設定を確認する。以下が表示�
 ```
 $ send_to_itms -h
 version: v2.1.0
-usage: sendData.py [-h] [--listfile LISTFILE] [--sample SAMPLE] [--directory DIRECTORY] [--transfer TRANSFER] [--version]
-
+usage: sendData.py [-h] [--listfile LISTFILE] [--sample SAMPLE] [--directory DIRECTORY]
+                   [--transfer TRANSFER] [--version]
 Data Creation Tool for iTMS Sending.
 
 optional arguments:
   -h, --help            show this help message and exit
   --listfile LISTFILE, -f LISTFILE
-                        List of samples to be transferred.
+                        List of samples to be transferred. (default: None)
   --sample SAMPLE, -s SAMPLE
-                        sample ID
+                        sample ID (default: None)
   --directory DIRECTORY, -d DIRECTORY
-                        parent analytical directory
+                        parent analytical directory (default: /data1/data/result)
   --transfer TRANSFER, -t TRANSFER
-                        working directory
+                        working directory (default: /data1/work/send_to_ITMS)
   --version, -v         show program's version number and exit
 ```
 ## 実行方法
