@@ -70,6 +70,8 @@ def search_info(sample_id, directory) :
 
 def create_link(linkDir, FILES):
 
+    os.makedirs(linkDir, exist_ok=True)
+
     for raw_path in FILES :
         link_path = os.path.join(linkDir, os.path.basename(raw_path))
 
@@ -93,7 +95,7 @@ def create_link(linkDir, FILES):
 
     return False
 
-def remove_upstream(dir_path):
+def remove_upstream(dir_path, hold_dir='/data1/work/send_to_ITMS'):
     dir_path = os.path.abspath(dir_path)
     shutil.rmtree(dir_path)
     
@@ -102,13 +104,10 @@ def remove_upstream(dir_path):
         files_dir = [ f for f in os.listdir(dir_path) if os.path.isdir(os.path.join(dir_path, f))]
         if len(files_dir) > 0 :
             break
+        elif dir_path == hold_dir :
+            break
         else :
-            choice = prompt_choice(str(dir_path) + " :delete the directory? (yes[Y]/no[N]):",['yes','y','no','n'])
-            if choice in ['yes','y'] :
-                shutil.rmtree(dir_path)
-                continue
-            else :
-                break
+            shutil.rmtree(dir_path)
 
 def prompt_choice(prompt, choices):
     while True:

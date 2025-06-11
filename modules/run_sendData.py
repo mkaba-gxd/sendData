@@ -1,8 +1,6 @@
 import os
 import pandas as pd
-import shutil
 import datetime
-import warnings
 from pathlib import Path
 from .common import *
 
@@ -92,7 +90,7 @@ def run_sendData(args):
         flag = create_link(linkDir, FILES)
         if flag :
             print('Link failed :' + item['sample_id'])
-            remove_upstream(Path(linkDir))
+            remove_upstream(Path(linkDir), transfer)
             df_drop = df_drop[ df_drop['sample_id']!=item['sample_id'] ]
         else :
             ckspath = os.path.join(transfer, now_str, 'checksum.' + str(i))
