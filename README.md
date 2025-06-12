@@ -1,5 +1,5 @@
-# sendData
-指定された検体について、iTMSへ送付するデータのシンボリックリンクとチェックサムを作成する。
+# send_to_itms ツール
+iTMSへ送付するデータのシンボリックリンクとチェックサムを作成する。
 ## 送付データ
 ### **eWES**
 <img src="https://github.com/user-attachments/assets/cd1eb924-470a-4087-b647-d831edc29c51" width="1000">
