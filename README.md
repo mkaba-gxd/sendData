@@ -11,13 +11,13 @@ iTMSへ送付するデータのシンボリックリンクとチェックサム�
 ~/bin フォルダを作成し、以下のコマンドを記載したテキストファイル send_to_itms を作成し、実行権限を付与する。
 エイリアスを作成しない場合は、singularity でコンテナを指定して実行する。
 ```
-singularity exec --disable-cache --bind /data1 /data1/labTools/labTools.sif python /data1/labTools/sendData/latest/sendData.py $@
+singularity exec --disable-cache --bind /data1 /data1/labTools/labTools.sif python /data1/labTools/send_to_itms/latest/send_to_itms.py $@
 ```
 usage を表示してエイリアスの設定を確認する。以下が表示されればOK。
 ```
 $ send_to_itms -h
 version: v2.1.0
-usage: sendData.py [-h] [--listfile LISTFILE] [--sample SAMPLE] [--directory DIRECTORY]
+usage: send_to_itms.py [-h] [--listfile LISTFILE] [--sample SAMPLE] [--directory DIRECTORY]
                    [--transfer TRANSFER] [--version]
 Data Creation Tool for iTMS Sending.
 
