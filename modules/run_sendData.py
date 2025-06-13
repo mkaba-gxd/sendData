@@ -28,7 +28,7 @@ def run_sendData(args):
             except FileNotFoundError as e:
                 init(e)
 
-    sample_id = list( set(sample_id))
+    sample_id = rmdup_list(sample_id)
     print("Run for " + str(len(sample_id))  + " sample IDs.")
 
     batch_id = []
