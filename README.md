@@ -39,14 +39,15 @@ optional arguments:
 $ send_to_itms --listfile <送付するサンプルリストファイルパス>
 $ send_to_itms --sample <送付するサンプルID>
 ```
-| option        |required | 概要                                            |default            |
-|:--------------|:-------:|:------------------------------------------------|:------------------|
-|--listfile/-f  |False*   |転送する検体のリストのファイルパス。<br> batchフォルダ名とSample IDをタブ区切りで記載 |None |
+| option        |required | 概要                                         |default            |
+|:--------------|:-------:|:---------------------------------------------|:------------------|
+|--listfile/-f  |False*   |転送する検体のSample IDリストのファイルパス。<br> Sample IDを1列に記載する |None |
 |--sample/-s    |False*   |転送する検体のSample ID（タブ区切りで複数指定可）|None               |
-|--directory/-d |False    |解析フォルダの親ディレクトリ                     |/data1/data/result |
-|--transfer/-t  |False    |転送用のデータセット出力先                 |/data1/work/send_to_ITMS |
+|--directory/-d |False    |解析フォルダの親ディレクトリ                    |/data1/data/result |
+|--transfer/-t  |False    |転送用のデータセット出力先                      |/data1/work/send_to_ITMS |
 
-**\*--listfile または --sample を指定する** \
+**\*--listfile または --sample のいずれか1つを指定する** \
+指定された Sample ID の解析データのうち、**データベースで最新**のもの（gc_history_logのidxが最大値）を検索して転送用データセットを作成する。\
 ⇒ \<TRANSFER\>/\<timestamp\>/GxD に既定のディレクトリ構造でシンボリックリンクが作成される。\
 &ensp;&ensp;&ensp;\<TRANSFER\>/\<timestamp\>/checksum.txt に各ファイルのチェックサムを書き出すジョブが投入される。\
 ⇒ 投入された全てのジョブ完了を確認後、/media/usb/cap に送付用HDDがマウントされていることを確認し、\
